@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Treadmill Product Page - Teleseen Elegant Graphite</title>
+    <title>Treadmill Product Page - Teleseen Advanced Header</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            /* Final, Sophisticated Theme Colors */
-            --primary-color: #2C3E50; /* Elegant Graphite (Dark Blue-Gray) - Trust & Quality */
-            --accent-highlight: #F39C12; /* Teleseen Gold (Vivid Amber/Orange) - High-Contrast CTA */
-            --success-color: #27AE60; /* Emerald Green - In Stock / Accessible Success */
-            --danger-color: #E74C3C; /* Deep Red - Discount / Accessible Danger */
-
-            /* General Colors */
-            --secondary-color: #F8F9FB; /* Very Light background */
+            /* Consistent Theme Colors */
+            --primary-color: #2C3E50; /* Elegant Graphite */
+            --accent-highlight: #F39C12; /* Teleseen Gold (CTA) */
+            --success-color: #27AE60; 
+            --danger-color: #E74C3C; 
+            --secondary-color: #F8F9FB; 
             --text-dark: #212121;
             --text-muted: #7f8c8d;
             --card-bg: #fff;
@@ -39,33 +37,131 @@
             min-height: 100vh;
         }
         
-        /* --- 1. GLOBAL HEADER (NAVIGATION BAR) --- */
-        .top-header {
-            background-color: var(--primary-color); 
-            padding: 15px 40px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        /* ======================================= */
+        /* --- 1. ADVANCED HEADER STYLES --- */
+        /* ======================================= */
+        header.site-header {
+            background-color: var(--card-bg); /* White header background */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- 1A. Top Bar (Logo, Search, Utility Icons) --- */
+        .header-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 3px solid var(--accent-highlight); /* Gold highlight */
-        }
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--card-bg); 
-        }
-        .header-icons i {
-            font-size: 1.2rem;
-            color: var(--card-bg); 
-            margin-left: 20px;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-        .header-icons i:hover {
-            color: var(--accent-highlight); /* Gold hover */
+            padding: 15px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
-        /* --- 2. LAYOUT AND MAIN CONTENT --- */
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Search Bar Styling */
+        .search-bar {
+            flex-grow: 1; 
+            max-width: 450px;
+            margin: 0 30px;
+            position: relative;
+        }
+        .search-input {
+            width: 100%;
+            padding: 10px 40px 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-highlight); /* Gold focus */
+        }
+        .search-bar i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        /* Utility Icons (Cart, Wishlist, Account) */
+        .header-utility {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .utility-icon {
+            position: relative;
+            cursor: pointer;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            transition: color 0.2s;
+        }
+        .utility-icon:hover {
+            color: var(--accent-highlight);
+        }
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            background: var(--danger-color); 
+            color: white;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            font-weight: 700;
+        }
+
+        /* Account/User Info */
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        .user-info:hover {
+            color: var(--accent-highlight);
+        }
+        .user-info i {
+            font-size: 1.2rem;
+        }
+
+        /* --- 1B. Bottom Bar (Main Navigation) --- */
+        .header-nav-bar {
+            background-color: var(--primary-color); /* Graphite background */
+        }
+        .main-nav {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        .main-nav a {
+            color: var(--card-bg); /* White text */
+            text-decoration: none;
+            padding: 12px 20px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background-color 0.3s, color 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        .main-nav a:hover, .main-nav a.active {
+            background-color: #3b5066; /* Slightly lighter Graphite on hover */
+            border-bottom-color: var(--accent-highlight);
+        }
+
+        /* ======================================= */
+        /* --- 2. PRODUCT PAGE STYLES (Existing) --- */
+        /* ======================================= */
         .container {
             max-width: 1200px;
             margin: 20px auto;
@@ -81,162 +177,47 @@
             box-shadow: var(--shadow-subtle);
         }
 
-        /* --- 3. IMAGE SECTION --- */
-        .product-image-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .main-image {
-            width: 100%;
-            padding-bottom: 75%; 
-            background: #eee;
-            border-radius: var(--border-radius);
-            position: relative;
-            overflow: hidden;
-        }
-        .main-image img {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: contain;
-        }
-        .thumbnail-gallery {
-            display: flex;
-            gap: 10px;
-        }
-        .thumbnail {
-            width: 80px;
-            height: 80px;
-            background: #eee;
-            border: 2px solid #ccc;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+        .product-image-container { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+        .main-image { width: 100%; padding-bottom: 75%; background: #eee; border-radius: var(--border-radius); position: relative; overflow: hidden; }
+        .main-image img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; }
+        .thumbnail-gallery { display: flex; gap: 10px; }
+        .thumbnail { width: 80px; height: 80px; background: #eee; border: 2px solid #ccc; border-radius: 5px; cursor: pointer; }
 
-        /* --- 4. DETAILS SECTION --- */
-        .product-details {
-            flex: 1;
-        }
-        .product-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--text-dark);
-        }
-        .brand {
-            font-size: 1rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-        .price-section {
-            display: flex;
-            align-items: baseline;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        .current-price {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--primary-color); /* Graphite */
-            margin-right: 15px;
-        }
-        .old-price {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            text-decoration: line-through;
-            margin-right: 15px;
-        }
-        .discount-badge {
-            background-color: var(--danger-color); /* Deep Red */
-            color: var(--card-bg);
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
+        .product-details { flex: 1; }
+        .product-title { font-size: 2rem; font-weight: 700; margin-bottom: 10px; color: var(--text-dark); }
+        .brand { font-size: 1rem; color: var(--primary-color); margin-bottom: 20px; font-weight: 600; }
+        .price-section { display: flex; align-items: baseline; margin-bottom: 20px; flex-wrap: wrap; }
+        .current-price { font-size: 2.5rem; font-weight: 900; color: var(--primary-color); margin-right: 15px; }
+        .old-price { font-size: 1.2rem; color: var(--text-muted); text-decoration: line-through; margin-right: 15px; }
+        .discount-badge { background-color: var(--danger-color); color: var(--card-bg); padding: 5px 10px; border-radius: 5px; font-weight: 700; font-size: 0.9rem; }
 
-        /* --- 5. ACTION BUTTONS (Consistent Style) --- */
-        .action-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
+        .action-group { display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
+        .cta-btn { display: inline-flex; align-items: center; padding: 15px 25px; border: none; border-radius: 6px; cursor: pointer; font-size: 1.1rem; font-weight: 700; transition: all 0.3s ease; gap: 10px; }
+        .cta-btn.buy-now { background-color: var(--accent-highlight); color: var(--text-dark); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); flex-grow: 1; justify-content: center; }
+        .cta-btn.buy-now:hover { background-color: #e28a00; transform: translateY(-2px); }
+        .cta-btn.add-to-cart { background-color: var(--primary-color); color: var(--card-bg); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); flex-grow: 1; justify-content: center; }
+        .cta-btn.add-to-cart:hover { background-color: #21303e; transform: translateY(-1px); }
         
-        .cta-btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 15px 25px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            gap: 10px;
-        }
-
-        /* Primary CTA: Teleseen Gold */
-        .cta-btn.buy-now {
-            background-color: var(--accent-highlight); 
-            color: var(--text-dark); 
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            flex-grow: 1;
-            justify-content: center;
-        }
-        .cta-btn.buy-now:hover {
-            background-color: #e28a00; /* Darker Gold on hover */
-            transform: translateY(-2px);
-        }
-
-        /* Secondary CTA: Graphite */
-        .cta-btn.add-to-cart {
-            background-color: var(--primary-color); 
-            color: var(--card-bg);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            flex-grow: 1;
-            justify-content: center;
-        }
-        .cta-btn.add-to-cart:hover {
-            background-color: #21303e; /* Darker Graphite on hover */
-            transform: translateY(-1px);
-        }
+        .info-box { background: #fff; border: 1px solid #ddd; padding: 15px; border-radius: var(--border-radius); margin-top: 20px; }
+        .hp-offer { font-size: 1.1rem; font-weight: 700; color: var(--primary-color); margin-bottom: 5px; }
+        .stock-status { font-weight: 600; color: var(--success-color); }
+        .stock-status.low { color: var(--accent-highlight); }
         
-        /* --- 6. HIRE PURCHASE & STOCK INFO --- */
-        .info-box {
-            background: #fff;
-            border: 1px solid #ddd;
-            padding: 15px;
-            border-radius: var(--border-radius);
-            margin-top: 20px;
-        }
-        .hp-offer {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-        }
-        .stock-status {
-            font-weight: 600;
-            color: var(--success-color); /* Emerald Green */
-        }
-        .stock-status.low {
-            color: var(--accent-highlight); /* Gold for Low Stock Warning */
-        }
-        
-        /* --- 7. Responsive Adjustments --- */
+        /* --- 3. Responsive Adjustments --- */
         @media (max-width: 900px) {
-            .product-grid {
-                flex-direction: column;
-            }
-            .product-details {
-                padding-top: 20px;
-            }
+            .header-top { padding: 15px 20px; }
+            .product-grid { flex-direction: column; }
+            .search-bar { max-width: 300px; margin: 0 15px; }
+            .main-nav a { padding: 12px 10px; }
+        }
+        @media (max-width: 768px) {
+            .search-bar { display: none; } /* Hide search bar on small screen to save space */
+            .header-top { justify-content: space-around; }
+            .main-nav { padding: 0 20px; justify-content: space-between; }
+            .main-nav a { font-size: 0.9rem; }
+            .user-info span { display: none; } /* Hide name to save space */
         }
         @media (max-width: 600px) {
-            .top-header { padding: 10px 20px; }
             .action-group { flex-direction: column; }
             .current-price { font-size: 2rem; }
         }
@@ -244,12 +225,40 @@
 </head>
 <body>
     
-    <header class="top-header">
-        <div class="logo">Teleseen</div>
-        <div class="header-icons">
-            <i class="fas fa-search" title="Search"></i>
-            <i class="fas fa-heart" title="Wishlist"></i>
-            <i class="fas fa-shopping-cart" title="Shopping Cart"></i>
+    <header class="site-header">
+        <div class="header-top">
+            <div class="logo">TELESEEN</div>
+            
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search for products, brands, and more...">
+                <i class="fas fa-search"></i>
+            </div>
+
+            <div class="header-utility">
+                
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i> 
+                    <span>My Account</span>
+                </div>
+                
+                <i class="utility-icon fas fa-heart" title="Wishlist"></i>
+                
+                <div class="utility-icon" title="Shopping Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">3</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="header-nav-bar">
+            <nav class="main-nav">
+                <a href="#" class="active">Home</a>
+                <a href="#">Electronics</a>
+                <a href="#">Home & Living</a>
+                <a href="#">Fitness & Health</a>
+                <a href="#">Fashion</a>
+                <a href="#">Deals</a>
+            </nav>
         </div>
     </header>
 
