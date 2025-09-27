@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Payment Methods - Teleseen Elegant Graphite</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Consistent Theme Colors (Same as Product Page) */
+            --primary-color: #2C3E50; /* Elegant Graphite (Dark Blue-Gray) - Trust & Quality */
+            --accent-highlight: #F39C12; /* Teleseen Gold (Vivid Amber/Orange) - High-Contrast CTA */
+            --success-color: #27AE60; /* Emerald Green - Default Card / Accessible Success */
+            --danger-color: #E74C3C; /* Deep Red - Delete / Accessible Danger */
+
+            /* General Colors */
+            --secondary-color: #F8F9FB; /* Very Light background */
+            --text-dark: #212121;
+            --text-muted: #7f8c8d;
+            --card-bg: #fff;
+            --border-radius: 10px;
+            --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --padding: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--secondary-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* --- 1. Global Header (Navigation Bar) - CONSISTENT! --- */
+        .top-header {
+            background-color: var(--primary-color); 
+            padding: 15px 40px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--accent-highlight); 
+            margin-bottom: 20px;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--card-bg); 
+        }
+        .header-icons i {
+            font-size: 1.2rem;
+            color: var(--card-bg); 
+            margin-left: 20px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .header-icons i:hover {
+            color: var(--accent-highlight); 
+        }
+
+        /* --- 2. Main Layout & Page Header --- */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .page-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+        
+        /* --- Buttons & Inputs (Primary CTA is GOLD) --- */
+        .primary-btn, .add-card-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            
+            /* Gold for CTA */
+            background-color: var(--accent-highlight); 
+            color: var(--text-dark);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            gap: 8px;
+        }
+        
+        .primary-btn:hover, .add-card-btn:hover {
+            background-color: #e28a00;
+            transform: translateY(-1px);
+        }
+        
+        .soft-input, .soft-select {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: var(--card-bg);
+            color: var(--text-dark);
+            margin-top: 5px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.3s, border-color 0.3s;
+        }
+        .soft-input:focus, .soft-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.2);
+        }
+
+        /* --- Card List & Item --- */
+        .card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .payment-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--padding);
+            border-radius: var(--border-radius);
+            background: var(--card-bg);
+            box-shadow: var(--shadow-subtle);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .payment-card.default-card {
+            /* Emerald Green Border */
+            border-color: var(--success-color);
+            background: #f7fff9;
+        }
+
+        .card-details {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            gap: 15px;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            width: 45px;
+            text-align: center;
+        }
+        .card-info { flex-grow: 1; min-width: 150px; }
+        .card-info h3 { font-size: 1rem; font-weight: 700; margin-bottom: 3px; }
+        .card-info p { font-size: 0.8rem; color: var(--text-muted); }
+        
+        .card-badge {
+            display: inline-block; padding: 4px 10px; font-size: 0.7rem; font-weight: 700;
+            border-radius: 4px; color: var(--card-bg); 
+            background: var(--success-color); /* Emerald Green Badge */
+            margin-left: 20px;
+        }
+
+        .expiry-date {
+            margin-left: 30px; font-size: 0.9rem; font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* --- Action Buttons --- */
+        .card-actions {
+            display: flex; gap: 10px; margin-left: 20px;
+        }
+        
+        .action-btn {
+            background: #eee; border: none; width: 35px; height: 35px; border-radius: 50%;
+            color: var(--text-dark); cursor: pointer; transition: background-color 0.2s, transform 0.2s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .action-btn.delete { color: var(--danger-color); } /* Deep Red */
+        .action-btn.set-default { color: var(--success-color); } /* Emerald Green */
+        .action-btn.edit { color: var(--primary-color); } /* Graphite */
+
+        /* --- Modal Styles --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); z-index: 200; display: flex;
+            justify-content: center; align-items: center;
+        }
+        .modal-content {
+            background: var(--card-bg); padding: 30px; border-radius: var(--border-radius);
+            width: 90%; max-width: 400px; box-shadow: var(--shadow-subtle);
+        }
+        .form-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        .form-actions { display: flex; justify-content: space-between; margin-top: 20px; }
+        .secondary-btn {
+            background: #eee; color: var(--text-dark); padding: 10px 20px;
+            border-radius: 6px; border: none; cursor: pointer;
+        }
+
+        /* --- Responsiveness --- */
+        @media (max-width: 768px) {
+             .top-header { padding: 10px 20px; }
+        }
+        @media (max-width: 600px) {
+            .page-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .page-title { width: 100%; }
+            .payment-card { flex-direction: column; align-items: flex-start; gap: 10px; padding: 15px; }
+            .card-details { width: 100%; }
+            .card-badge { margin-left: 10px; order: 3; }
+            .expiry-date { margin-left: 0; order: 4; }
+            .card-actions { width: 100%; justify-content: space-around; margin-left: 0; padding-top: 10px; border-top: 1px solid #eee; }
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="top-header">
+        <div class="logo">Teleseen</div>
+        <div class="header-icons">
+            <i class="fas fa-search" title="Search"></i>
+            <i class="fas fa-heart" title="Wishlist"></i>
+            <i class="fas fa-shopping-cart" title="Shopping Cart"></i>
+        </div>
+    </header>
+
+    <div class="container">
+        <header class="page-header">
+            <h1 class="page-title">💳 My Saved Payment Methods</h1>
+            <button class="add-card-btn" onclick="openCardForm('new')">
+                <i class="fas fa-plus-circle"></i> Add New Card
+            </button>
+        </header>
+
+        <section class="card-list" id="cardList">
+            </section>
+        
+        <p id="emptyState" class="empty-state" style="display:none; text-align:center; padding: 40px; background: white; border-radius: 10px; color: var(--text-muted);">
+            You haven't saved any payment methods yet. Click 'Add New Card' above!
+        </p>
+    </div>
+
+    <div id="cardFormModal" class="modal-overlay" style="display:none;">
+        <div class="modal-content">
+            <h2 id="formTitle" style="color: var(--primary-color); font-size: 1.4rem;">Add New Card</h2>
+            <form id="paymentCardForm" class="form-grid">
+                <input type="hidden" id="cardId">
+                
+                <label for="cardType">Card Type</label>
+                <select id="cardType" class="soft-select">
+                    <option value="Visa">Visa</option>
+                    <option value="Mastercard">Mastercard</option>
+                    <option value="Amex">Amex</option>
+                    <option value="Discover">Discover</option>
+                </select>
+
+                <label for="lastFour">Last 4 Digits</label>
+                <input type="text" id="lastFour" class="soft-input" required maxlength="4" pattern="\d{4}" placeholder="e.g., 4321">
+
+                <label for="expiry">Expiration (MM/YY)</label>
+                <input type="text" id="expiry" class="soft-input" required pattern="\d{2}/\d{2}" maxlength="5" placeholder="MM/YY">
+
+                <label for="holder">Cardholder Name</label>
+                <input type="text" id="holder" class="soft-input" required placeholder="John D. Doe">
+                
+                <div class="form-actions">
+                    <button type="button" onclick="closeCardForm()" class="secondary-btn">Cancel</button>
+                    <button type="submit" id="saveBtn" class="primary-btn"><i class="fas fa-save"></i> Save Card</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        // --- Data Simulation (Dummy Cards) ---
+        let savedCards = [
+            { id: 1, type: 'Visa', lastFour: '4321', expiry: '12/26', holder: 'JOHN D.', isDefault: true },
+            { id: 2, type: 'Mastercard', lastFour: '9876', expiry: '08/24', holder: 'JANE S.', isDefault: false },
+            { id: 3, type: 'Amex', lastFour: '3001', expiry: '05/25', holder: 'A. PERERA', isDefault: false }
+        ];
+        let nextCardId = 4;
+
+        const cardListContainer = document.getElementById('cardList');
+        const cardFormModal = document.getElementById('cardFormModal');
+        const paymentCardForm = document.getElementById('paymentCardForm');
+        const emptyState = document.getElementById('emptyState');
+
+        // --- Helper Functions ---
+        const getCardIcon = (type) => {
+            switch (type.toLowerCase()) {
+                case 'visa': return '<i class="fab fa-cc-visa" style="color:#1652FF;"></i>';
+                case 'mastercard': return '<i class="fab fa-cc-mastercard" style="color:#eb001b;"></i>';
+                case 'amex': return '<i class="fab fa-cc-amex" style="color:#007BC1;"></i>';
+                case 'discover': return '<i class="fab fa-cc-discover" style="color:#FF6600;"></i>';
+                default: return '<i class="fas fa-credit-card" style="color:var(--text-muted);"></i>';
+            }
+        };
+
+        const renderCard = (card) => {
+            const defaultBadge = card.isDefault ? '<span class="card-badge">DEFAULT</span>' : '';
+            const formattedCardNumber = `**** **** **** ${card.lastFour}`;
+            
+            return `
+                <div class="payment-card ${card.isDefault ? 'default-card' : ''}" data-id="${card.id}">
+                    
+                    <div class="card-details">
+                        <div class="card-icon">${getCardIcon(card.type)}</div>
+                        <div class="card-info">
+                            <h3>${card.type}</h3>
+                            <p>${formattedCardNumber}</p>
+                        </div>
+                        ${defaultBadge}
+                        <div class="expiry-date">Exp: ${card.expiry}</div>
+                    </div>
+
+                    <div class="card-actions">
+                        ${!card.isDefault ? 
+                            `<button class="action-btn set-default" title="Set as Default" onclick="setCardAsDefault(${card.id})">
+                                <i class="fas fa-star"></i>
+                            </button>` 
+                            : ''
+                        }
+                        <button class="action-btn edit" title="Edit Details" onclick="openCardForm('edit', ${card.id})">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="action-btn delete" title="Remove Card" onclick="deleteCard(${card.id})">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        };
+
+        const renderCardList = () => {
+            cardListContainer.innerHTML = savedCards.sort((a, b) => (b.isDefault - a.isDefault)).map(renderCard).join('');
+            emptyState.style.display = savedCards.length === 0 ? 'block' : 'none';
+        };
+
+        // --- Core Functions: Save (Add/Edit) ---
+
+        window.openCardForm = (mode, id = null) => {
+            const formTitle = document.getElementById('formTitle');
+            const saveBtn = document.getElementById('saveBtn');
+            paymentCardForm.reset();
+            document.getElementById('cardId').value = '';
+
+            if (mode === 'new') {
+                formTitle.textContent = 'Add New Card';
+                saveBtn.innerHTML = '<i class="fas fa-save"></i> Save Card';
+            } else if (mode === 'edit' && id !== null) {
+                const card = savedCards.find(c => c.id === id);
+                if (!card) return;
+
+                formTitle.textContent = 'Update Card Details';
+                saveBtn.innerHTML = '<i class="fas fa-save"></i> Update Card';
+
+                document.getElementById('cardId').value = card.id;
+                document.getElementById('cardType').value = card.type;
+                document.getElementById('lastFour').value = card.lastFour;
+                document.getElementById('expiry').value = card.expiry;
+                document.getElementById('holder').value = card.holder;
+            }
+
+            cardFormModal.style.display = 'flex';
+        };
+
+        window.closeCardForm = () => {
+            cardFormModal.style.display = 'none';
+        };
+
+        paymentCardForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const id = document.getElementById('cardId').value ? parseInt(document.getElementById('cardId').value) : null;
+            const type = document.getElementById('cardType').value;
+            const lastFour = document.getElementById('lastFour').value;
+            const expiry = document.getElementById('expiry').value;
+            const holder = document.getElementById('holder').value.toUpperCase(); 
+            
+            if (!lastFour || !expiry || !holder) {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            const newCardData = { id, type, lastFour, expiry, holder };
+
+            if (id) {
+                const index = savedCards.findIndex(c => c.id === id);
+                if (index !== -1) {
+                    savedCards[index] = { ...savedCards[index], ...newCardData };
+                    alert('Card details updated successfully!');
+                }
+            } else {
+                newCardData.id = nextCardId++;
+                newCardData.isDefault = savedCards.length === 0; 
+                savedCards.push(newCardData);
+                alert('New card saved!');
+            }
+
+            renderCardList();
+            closeCardForm();
+        });
+
+
+        // --- Core Functions: Default & Delete ---
+
+        window.setCardAsDefault = (id) => {
+            savedCards.forEach(card => {
+                card.isDefault = card.id === id;
+            });
+            renderCardList();
+            alert('Default payment method updated.');
+        };
+
+        window.deleteCard = (id) => {
+            const cardIndex = savedCards.findIndex(c => c.id === id);
+            if (cardIndex === -1) return;
+            
+            if (confirm(`Are you sure you want to remove the card ending in ${savedCards[cardIndex].lastFour}?`)) {
+                
+                const wasDefault = savedCards[cardIndex].isDefault;
+                savedCards.splice(cardIndex, 1);
+                
+                if (wasDefault && savedCards.length > 0) {
+                    savedCards[0].isDefault = true;
+                }
+                
+                renderCardList();
+                alert('Card successfully removed.');
+            }
+        };
+        
+        // --- Initialization ---
+        document.addEventListener('DOMContentLoaded', renderCardList);
+    </script>
+</body>
+</html>
