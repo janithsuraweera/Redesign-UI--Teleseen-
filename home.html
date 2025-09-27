@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage - Teleseen Elite E-commerce UI</title>
+    <title>Ultimate Homepage - Teleseen UI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 
@@ -38,120 +38,10 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-        }
-        
-        /* ======================================= */
-        /* --- 1. HEADER (CONSISTENT) --- */
-        /* ======================================= */
-        header.site-header { background-color: var(--card-bg); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); position: sticky; top: 0; z-index: 50; }
-        .header-top { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
-        .logo { font-size: 1.8rem; font-weight: 900; color: var(--primary-color); text-transform: uppercase; letter-spacing: 1px; }
-        .header-utility { display: flex; align-items: center; gap: 25px; }
-        .search-bar { position: relative; }
-        .search-bar input { padding: 8px 40px 8px 15px; border: 1px solid #ddd; border-radius: 20px; width: 300px; transition: border-color 0.3s; }
-        .search-bar input:focus { border-color: var(--accent-highlight); outline: none; }
-        .search-bar i { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
-        .utility-icon i { font-size: 1.3rem; color: var(--primary-color); cursor: pointer; }
-        .cart-count { background-color: var(--accent-highlight); color: var(--primary-color); font-size: 0.7rem; padding: 2px 5px; border-radius: 50%; position: absolute; top: -5px; right: -5px; font-weight: 700; }
-        
-        .header-nav-bar { background-color: var(--primary-color); }
-        .main-nav { display: flex; }
-        .main-nav a { color: var(--card-bg); text-decoration: none; padding: 12px 20px; font-weight: 600; font-size: 0.95rem; transition: background-color 0.3s; border-bottom: 3px solid transparent; }
-        .main-nav a:hover, .main-nav a.active { background-color: #3b5066; border-bottom-color: var(--accent-highlight); }
 
-        /* ======================================= */
-        /* --- 2. HERO SECTION (IMPACTFUL) --- */
-        /* ======================================= */
-        .hero-section {
-            background-color: var(--primary-color);
-            color: var(--card-bg);
-            padding: 80px 0;
-            margin-bottom: 40px;
-            box-shadow: var(--shadow-bold);
-        }
-        .hero-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .hero-text h1 { font-size: 3rem; margin-bottom: 15px; font-weight: 900; }
-        .hero-text p { font-size: 1.2rem; margin-bottom: 30px; color: #ccc; }
-        .hero-cta {
-            padding: 15px 40px;
-            background-color: var(--accent-highlight);
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            font-weight: 700;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: background-color 0.2s, transform 0.2s;
-        }
-        .hero-cta:hover { background-color: #e28a00; transform: translateY(-2px); }
-        .hero-image { max-width: 40%; }
-        .hero-image img { width: 100%; height: auto; border-radius: var(--border-radius); box-shadow: var(--shadow-soft); }
 
-        /* ======================================= */
-        /* --- 3. VALUE PROPOSITION BAR --- */
-        /* ======================================= */
-        .value-prop-bar {
-            background-color: var(--card-bg);
-            padding: 20px 0;
-            margin-bottom: 40px;
-            box-shadow: var(--shadow-soft);
-            border-radius: var(--border-radius);
-        }
-        .prop-grid {
-            display: flex;
-            justify-content: space-around;
-            text-align: center;
-        }
-        .prop-item i { font-size: 2rem; color: var(--accent-highlight); margin-bottom: 10px; }
-        .prop-item strong { display: block; font-size: 1rem; color: var(--primary-color); }
-        .prop-item span { font-size: 0.9rem; color: var(--text-muted); }
 
-        /* ======================================= */
-        /* --- 4. PRODUCT SHOWCASE --- */
-        /* ======================================= */
-        .section-title { font-size: 2rem; font-weight: 800; color: var(--primary-color); margin-bottom: 30px; text-align: center; }
 
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-
-        .product-card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-soft);
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-decoration: none;
-            color: var(--text-dark);
-            border: 1px solid #eee;
-        }
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-bold);
-            border-color: var(--accent-highlight);
-        }
-
-        .product-image { height: 200px; overflow: hidden; }
-        .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-        .product-card:hover .product-image img { transform: scale(1.05); }
-
-        .product-info { padding: 15px 20px 20px; }
-        .product-info h3 { font-size: 1.1rem; margin-bottom: 5px; color: var(--primary-color); }
-        .product-info .price { font-size: 1.5rem; font-weight: 900; color: var(--accent-highlight); margin-bottom: 10px; }
-        .product-info .rating i { color: gold; font-size: 0.9rem; }
-        
-        .add-to-cart-btn {
-            display: block; width: 100%; padding: 10px; background-color: var(--primary-color);
-            color: var(--card-bg); border: none; border-radius: 6px; font-weight: 600;
-            cursor: pointer; transition: background-color 0.2s;
-        }
-        .add-to-cart-btn:hover { background-color: #3b5066; }
 
         /* ======================================= */
         /* --- 5. FOOTER (DARK GRAPHITE) --- */
@@ -177,16 +67,173 @@
 
         .footer-bottom { border-top: 1px solid #3b5066; margin-top: 30px; padding-top: 20px; text-align: center; color: #7f8c8d; }
 
+
+
+
+        }
+        
+        /* ======================================= */
+        /* --- 1. HEADER & MEGA-MENU TOGGLE --- */
+        /* ======================================= */
+        header.site-header { background-color: var(--card-bg); box-shadow: var(--shadow-soft); position: sticky; top: 0; z-index: 50; }
+        .header-top { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
+        .logo { font-size: 1.8rem; font-weight: 900; color: var(--primary-color); text-transform: uppercase; letter-spacing: 1px; }
+        .header-utility { display: flex; align-items: center; gap: 25px; }
+        
+        .main-nav-links { display: flex; gap: 20px; }
+        .main-nav-links a { text-decoration: none; color: var(--primary-color); font-weight: 600; padding: 5px 0; transition: color 0.2s; }
+        .main-nav-links a:hover { color: var(--accent-highlight); }
+        
+        .utility-icon { position: relative; }
+        .utility-icon i { font-size: 1.3rem; color: var(--primary-color); cursor: pointer; }
+        .cart-count { background-color: var(--accent-highlight); color: var(--primary-color); font-size: 0.7rem; padding: 2px 5px; border-radius: 50%; position: absolute; top: -5px; right: -5px; font-weight: 700; z-index: 10; }
+        
+        /* Mega Menu Button */
+        .mega-menu-btn {
+            background-color: var(--accent-highlight); color: var(--primary-color);
+            padding: 10px 20px; border: none; border-radius: 6px; font-weight: 700;
+            cursor: pointer; transition: background-color 0.2s;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .mega-menu-btn:hover { background-color: #e28a00; }
+
+        /* ======================================= */
+        /* --- 2. DYNAMIC CATEGORY MEGA-MENU (NEW) --- */
+        /* ======================================= */
+        .mega-menu-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4); z-index: 99; transition: opacity 0.3s;
+        }
+        .mega-menu-content {
+            background: var(--card-bg); width: 350px; height: 100%;
+            position: fixed; left: -350px; top: 0; z-index: 100;
+            box-shadow: var(--shadow-bold); transition: left 0.3s ease-out;
+            overflow-y: auto;
+        }
+        .mega-menu-overlay.open { display: block; opacity: 1; }
+        .mega-menu-overlay.open .mega-menu-content { left: 0; }
+        
+        .menu-header { background: var(--primary-color); color: var(--card-bg); padding: 15px 20px; font-size: 1.5rem; font-weight: 700; }
+        .category-list li a { 
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 20px; border-bottom: 1px solid #eee; text-decoration: none;
+            color: var(--text-dark); font-weight: 600; transition: background-color 0.2s, color 0.2s;
+        }
+        .category-list li a:hover { background-color: var(--secondary-bg); color: var(--accent-highlight); }
+        .category-list i { color: var(--text-muted); font-size: 0.9rem; }
+
+        /* ======================================= */
+        /* --- 3. INTERACTIVE HERO CAROUSEL (NEW) --- */
+        /* ======================================= */
+        .hero-carousel-container {
+            background-color: var(--primary-color);
+            padding: 80px 0;
+            margin-bottom: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+        .hero-slide {
+            display: none; /* Controlled by JS */
+            color: var(--card-bg);
+            padding: 0 20px;
+            height: 400px;
+            align-items: center;
+            justify-content: space-between;
+            transition: opacity 0.5s;
+        }
+        .hero-slide.active { display: flex; }
+        
+        .slide-text h1 { font-size: 3rem; margin-bottom: 15px; font-weight: 900; }
+        .slide-text p { font-size: 1.2rem; margin-bottom: 30px; color: #ccc; }
+        .slide-image { max-width: 40%; }
+        .slide-image img { width: 100%; height: auto; border-radius: var(--border-radius); box-shadow: var(--shadow-soft); }
+        
+        .hero-cta {
+            padding: 15px 40px; background-color: var(--accent-highlight);
+            color: var(--primary-color); font-size: 1.1rem; font-weight: 700;
+            border-radius: 8px; text-decoration: none; transition: background-color 0.2s, transform 0.2s;
+        }
+        .hero-cta:hover { background-color: #e28a00; transform: translateY(-2px); }
+
+        /* Carousel Navigation Dots */
+        .dot-navigation { text-align: center; position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); }
+        .dot { height: 10px; width: 10px; margin: 0 4px; background-color: #666; border-radius: 50%; display: inline-block; cursor: pointer; transition: background-color 0.3s; }
+        .dot.active { background-color: var(--accent-highlight); }
+
+        /* ======================================= */
+        /* --- 4. SPLIT MARKETING BLOCK (NEW) --- */
+        /* ======================================= */
+        .marketing-block { margin-bottom: 40px; }
+        .split-content-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 30px;
+        }
+        .offer-card {
+            height: 300px; padding: 40px; border-radius: var(--border-radius);
+            display: flex; flex-direction: column; justify-content: center;
+            color: var(--card-bg); background-size: cover; background-position: center;
+            position: relative; overflow: hidden;
+        }
+        .offer-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.4); /* Dark overlay */
+            z-index: 1;
+        }
+        .offer-card h3, .offer-card a { z-index: 2; }
+
+        .offer-card h3 { font-size: 2rem; margin-bottom: 15px; font-weight: 900; }
+        .offer-card a.secondary-cta {
+            padding: 10px 25px; background: var(--accent-highlight); color: var(--primary-color);
+            font-weight: 700; border-radius: 6px; align-self: flex-start;
+            text-decoration: none; transition: background-color 0.2s;
+        }
+        .offer-card a.secondary-cta:hover { background: #e28a00; }
+
+        /* Specific background for marketing blocks */
+        .block-1 { background-image: url('placeholder-offer1.jpg'); background-color: #44596d; }
+        .block-2 { background-image: url('placeholder-offer2.jpg'); background-color: #3498DB; }
+
+        /* ======================================= */
+        /* --- 5. FLOATING ACTION BUTTON (NEW) --- */
+        /* ======================================= */
+        .fab-whatsapp {
+            position: fixed; bottom: 30px; right: 30px;
+            background-color: #25D366; color: white;
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100; transition: transform 0.2s;
+            cursor: pointer; text-decoration: none;
+        }
+        .fab-whatsapp:hover { transform: scale(1.1); }
+
+
+        /* Product Showcase (Reused/Refined) */
+        .section-title { font-size: 2rem; font-weight: 800; color: var(--primary-color); margin-bottom: 30px; text-align: center; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 50px; }
+        .product-card { background: var(--card-bg); border-radius: var(--border-radius); box-shadow: var(--shadow-soft); overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; text-decoration: none; color: var(--text-dark); border: 1px solid #eee; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-bold); border-color: var(--accent-highlight); }
+        .product-image { height: 200px; overflow: hidden; }
+        .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .product-info { padding: 15px 20px 20px; }
+        .product-info .price { font-size: 1.5rem; font-weight: 900; color: var(--accent-highlight); margin-bottom: 10px; }
+        .add-to-cart-btn { display: block; width: 100%; padding: 10px; background-color: var(--primary-color); color: var(--card-bg); border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
+
+        /* Footer (Consistent) */
+        .site-footer { background-color: var(--primary-color); color: #ccc; padding: 40px 0; font-size: 0.9rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 2fr; gap: 30px; }
+        .footer-logo { font-size: 1.5rem; font-weight: 900; color: var(--card-bg); margin-bottom: 15px; }
+
         /* Responsive Adjustments */
         @media (max-width: 900px) {
-            .hero-content { flex-direction: column-reverse; text-align: center; }
-            .hero-text, .hero-image { max-width: 100%; }
-            .hero-image { margin-bottom: 30px; }
-            .hero-section { padding: 40px 0; }
-            .hero-text h1 { font-size: 2.5rem; }
-            .value-prop-bar { display: none; /* Hide on small screens for simplicity */ }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
-            .search-bar input { width: 200px; }
+            .header-top { flex-wrap: wrap; justify-content: center; }
+            .mega-menu-btn { order: 3; width: 100%; margin-top: 10px; }
+            .main-nav-links { display: none; }
+            .hero-slide { flex-direction: column-reverse; text-align: center; height: auto; }
+            .slide-text, .slide-image { max-width: 100%; }
+            .slide-image { margin-bottom: 30px; }
+            .split-content-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .fab-whatsapp { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -196,135 +243,148 @@
         <div class="container">
             <div class="header-top">
                 <a href="#" class="logo">TELESEEN</a>
+                <button class="mega-menu-btn" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i> Shop by Category
+                </button>
                 <div class="header-utility">
-                    <div class="search-bar">
-                        <input type="text" placeholder="Search products, brands...">
-                        <i class="fas fa-search"></i>
-                    </div>
+                    <nav class="main-nav-links">
+                         <a href="#">Deals</a>
+                         <a href="#">New Arrivals</a>
+                         <a href="#">Support</a>
+                    </nav>
                     <div class="utility-icon" title="My Account">
                         <i class="fas fa-user-circle"></i>
                     </div>
-                    <div class="utility-icon" title="Shopping Cart" style="position: relative;">
+                    <div class="utility-icon" title="Shopping Cart">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count">3</span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="header-nav-bar">
-            <div class="container">
-                <nav class="main-nav">
-                    <a href="#" class="active">Home</a>
-                    <a href="#">Electronics</a>
-                    <a href="#">Home & Living</a>
-                    <a href="#">Fashion</a>
-                    <a href="#">Deals</a>
-                    <a href="#">Help</a>
-                </nav>
-            </div>
-        </div>
     </header>
 
-    <div class="hero-section">
+    <div id="megaMenuOverlay" class="mega-menu-overlay" onclick="toggleMenu()">
+        <div class="mega-menu-content" onclick="event.stopPropagation()">
+            <div class="menu-header">All Departments</div>
+            <ul class="category-list">
+                <li><a href="#"><i class="fas fa-tv"></i> Electronics <i class="fas fa-chevron-right"></i></a></li>
+                <li><a href="#"><i class="fas fa-couch"></i> Home & Furniture <i class="fas fa-chevron-right"></i></a></li>
+                <li><a href="#"><i class="fas fa-shirt"></i> Fashion & Apparel <i class="fas fa-chevron-right"></i></a></li>
+                <li><a href="#"><i class="fas fa-kitchen-set"></i> Kitchen Appliances <i class="fas fa-chevron-right"></i></a></li>
+                <li><a href="#"><i class="fas fa-dumbbell"></i> Sports & Fitness <i class="fas fa-chevron-right"></i></a></li>
+                <li><a href="#"><i class="fas fa-car"></i> Automotive <i class="fas fa-chevron-right"></i></a></li>
+                </ul>
+        </div>
+    </div>
+
+    <div class="hero-carousel-container">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>The Future of Home Shopping is Here.</h1>
-                    <p>Experience ultra-fast delivery and the best deals on the latest tech and home essentials across Sri Lanka.</p>
+            <div class="hero-slide active" data-slide="0">
+                <div class="slide-text">
+                    <h1>The Future is 8K. Get the Largest TV Deals!</h1>
+                    <p>Pre-order the new QLED 8K series and receive a FREE soundbar valued at Rs. 50,000.</p>
                     <a href="#" class="hero-cta">
-                        Shop Today's Best Deals <i class="fas fa-arrow-right"></i>
+                        Pre-Order Now <i class="fas fa-angle-right"></i>
                     </a>
                 </div>
-                <div class="hero-image">
-                    <img src="placeholder-hero-image.jpg" alt="Featured Product Image" style="background-color: #44596d;">
+                <div class="slide-image">
+                    <img src="placeholder-tv.jpg" alt="Featured Product Image" style="background-color: #44596d;">
                 </div>
             </div>
+            
+            <div class="hero-slide" data-slide="1">
+                <div class="slide-text">
+                    <h1>Back to School Savings: Laptops & Tabs!</h1>
+                    <p>Flat 20% off all student essentials. Limited time offer on leading brands.</p>
+                    <a href="#" class="hero-cta">
+                        View Student Deals <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+                <div class="slide-image">
+                    <img src="placeholder-laptop.jpg" alt="Featured Product Image" style="background-color: #44596d;">
+                </div>
+            </div>
+            
+             <div class="hero-slide" data-slide="2">
+                <div class="slide-text">
+                    <h1>Your Kitchen Upgrade Starts Here!</h1>
+                    <p>Free islandwide delivery on all large kitchen appliances this month.</p>
+                    <a href="#" class="hero-cta">
+                        Shop Appliances <i class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+                <div class="slide-image">
+                    <img src="placeholder-mixer.jpg" alt="Featured Product Image" style="background-color: #44596d;">
+                </div>
+            </div>
+        </div>
+        <div class="dot-navigation" id="dotNavigation">
+            <span class="dot active" data-slide="0"></span>
+            <span class="dot" data-slide="1"></span>
+            <span class="dot" data-slide="2"></span>
         </div>
     </div>
     
-    <div class="value-prop-bar">
-        <div class="container">
-            <div class="prop-grid">
-                <div class="prop-item">
-                    <i class="fas fa-shipping-fast"></i>
-                    <strong>Islandwide Express</strong>
-                    <span>Delivered in 1-3 days</span>
-                </div>
-                <div class="prop-item">
-                    <i class="fas fa-headset"></i>
-                    <strong>24/7 Premium Support</strong>
-                    <span>Dedicated local team</span>
-                </div>
-                <div class="prop-item">
-                    <i class="fas fa-dollar-sign"></i>
-                    <strong>Best Price Guarantee</strong>
-                    <span>We match local competitor prices</span>
-                </div>
-                <div class="prop-item">
-                    <i class="fas fa-shield-alt"></i>
-                    <strong>Secure Payments</strong>
-                    <span>Card and Cash on Delivery</span>
-                </div>
+    <div class="container marketing-block">
+        <div class="split-content-grid">
+            <div class="offer-card block-1" style="background-image: url('https://via.placeholder.com/600x300/F39C12/2C3E50?text=Monthly+Flash+Sale');">
+                <h3><i class="fas fa-bolt"></i> Monthly Flash Sale is LIVE!</h3>
+                <p>Up to 60% OFF selected items for the next 48 hours only.</p>
+                <a href="#" class="secondary-cta">Shop Flash Deals</a>
+            </div>
+            <div class="offer-card block-2" style="background-image: url('https://via.placeholder.com/600x300/3498DB/FFFFFF?text=Get+Financing');">
+                <h3><i class="fas fa-hand-holding-dollar"></i> Easy Payment Plans</h3>
+                <p>0% interest installment plans available with all major credit cards.</p>
+                <a href="#" class="secondary-cta">Learn More</a>
             </div>
         </div>
     </div>
 
     <div class="container">
-        <h2 class="section-title">Trending Now: Top Electronics</h2>
+        <h2 class="section-title">Customers Are Buying: Quick Picks</h2>
         <div class="product-grid">
             
             <a href="#" class="product-card">
                 <div class="product-image">
-                    <img src="placeholder-tv.jpg" alt="Product 1" style="background-color: #f7f7f7;">
+                    <img src="placeholder-shoes.jpg" alt="Product 1" style="background-color: #f7f7f7;">
                 </div>
                 <div class="product-info">
-                    <h3>4K UHD Smart TV 55" Pro</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i> (120)
-                    </div>
-                    <div class="price">Rs. 99,000</div>
+                    <h3>Nike Flex Runners</h3>
+                    <div class="price">Rs. 15,500</div>
                     <button class="add-to-cart-btn">Add to Cart</button>
                 </div>
             </a>
             
             <a href="#" class="product-card">
                 <div class="product-image">
-                    <img src="placeholder-soundbar.jpg" alt="Product 2" style="background-color: #f7f7f7;">
+                    <img src="placeholder-watch.jpg" alt="Product 2" style="background-color: #f7f7f7;">
                 </div>
                 <div class="product-info">
-                    <h3>Premium Soundbar X300</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (85)
-                    </div>
-                    <div class="price">Rs. 24,999</div>
+                    <h3>Smart Watch Ultra 3</h3>
+                    <div class="price">Rs. 45,000</div>
                     <button class="add-to-cart-btn">Add to Cart</button>
                 </div>
             </a>
             
             <a href="#" class="product-card">
                 <div class="product-image">
-                    <img src="placeholder-laptop.jpg" alt="Product 3" style="background-color: #f7f7f7;">
-                </div>
-                <div class="product-info">
-                    <h3>Ultra Laptop Pro M2</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (40)
-                    </div>
-                    <div class="price">Rs. 240,000</div>
-                    <button class="add-to-cart-btn">Add to Cart</button>
-                </div>
-            </a>
-            
-            <a href="#" class="product-card">
-                <div class="product-image">
-                    <img src="placeholder-fan.jpg" alt="Product 4" style="background-color: #f7f7f7;">
+                    <img src="placeholder-fan.jpg" alt="Product 3" style="background-color: #f7f7f7;">
                 </div>
                 <div class="product-info">
                     <h3>Smart Ceiling Fan</h3>
-                    <div class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i> (60)
-                    </div>
                     <div class="price">Rs. 18,500</div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </a>
+            
+            <a href="#" class="product-card">
+                <div class="product-image">
+                    <img src="placeholder-headphones.jpg" alt="Product 4" style="background-color: #f7f7f7;">
+                </div>
+                <div class="product-info">
+                    <h3>Noise Cancelling Headphones</h3>
+                    <div class="price">Rs. 8,990</div>
                     <button class="add-to-cart-btn">Add to Cart</button>
                 </div>
             </a>
@@ -378,5 +438,60 @@
             </div>
         </div>
     </footer>
+    
+    <a href="https://wa.me/94XXXXXXXXX" class="fab-whatsapp" target="_blank" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // --- Mega Menu Toggle ---
+        const megaMenuOverlay = document.getElementById('megaMenuOverlay');
+        function toggleMenu() {
+            megaMenuOverlay.classList.toggle('open');
+            document.body.style.overflow = megaMenuOverlay.classList.contains('open') ? 'hidden' : '';
+        }
+
+        // --- Hero Carousel Logic ---
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            // Hide all slides and remove active class from dots
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Calculate the new index (wrap around)
+            slideIndex = (n + totalSlides) % totalSlides;
+            
+            // Show the new slide and activate the corresponding dot
+            slides[slideIndex].classList.add('active');
+            dots[slideIndex].classList.add('active');
+        }
+
+        // Auto-advance feature
+        function autoAdvance() {
+            showSlide(slideIndex + 1);
+        }
+
+        // Add click handlers for dots
+        dots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                clearInterval(carouselInterval); // Stop auto-advance temporarily
+                showSlide(parseInt(this.getAttribute('data-slide')));
+                carouselInterval = setInterval(autoAdvance, 5000); // Restart interval
+            });
+        });
+
+        // Start the carousel auto-advance every 5 seconds
+        let carouselInterval = setInterval(autoAdvance, 5000); 
+
+        // Initial setup
+        document.addEventListener('DOMContentLoaded', () => {
+            showSlide(0);
+        });
+
+    </script>
 </body>
 </html>
