@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Homepage - Teleseen UI (Classic Nav)</title>
+    <title>Homepage - Teleseen UI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            /* Consistent Theme Colors */
+            /* Light Mode Defaults */
             --primary-color: #2C3E50; /* Elegant Graphite (Main) */
             --accent-highlight: #F39C12; /* Teleseen Gold (CTA) */
             --secondary-bg: #F8F9FB; /* Light Gray */
@@ -21,11 +21,41 @@
             --shadow-bold: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
 
+        /* ======================================= */
+        /* --- DARK MODE THEME --- */
+        /* ======================================= */
+        body.dark-mode {
+            --primary-color: #1a1a1a; 
+            --accent-highlight: #FFC300; 
+            --secondary-bg: #222222; 
+            --card-bg: #333333; 
+            --text-dark: #f0f0f0; 
+            --text-muted: #b0b0b0; 
+            --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.3);
+            --shadow-bold: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        body.dark-mode header.site-header { background-color: var(--card-bg); box-shadow: var(--shadow-bold); }
+        body.dark-mode .hero-carousel-container { background-color: var(--primary-color); }
+        body.dark-mode .logo, body.dark-mode .utility-icon i, body.dark-mode .search-bar input { color: var(--text-dark); }
+        body.dark-mode .product-card { border: 1px solid #444; }
+        body.dark-mode .add-to-cart-btn { background-color: #444; color: var(--text-dark); }
+        body.dark-mode .search-bar input { background-color: #444; border-color: #555; }
+        body.dark-mode .main-nav a { color: var(--text-dark); }
+        body.dark-mode .main-nav a:hover, body.dark-mode .main-nav a.active { background-color: #444; border-bottom-color: var(--accent-highlight); }
+        body.dark-mode .dark-mode-toggle i.fa-moon { color: var(--accent-highlight); display: inline; }
+        body.dark-mode .dark-mode-toggle i.fa-sun { display: none; }
+
+        /* ======================================= */
+        /* --- GLOBAL STYLES --- */
+        /* ======================================= */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
+            transition: color 0.3s, background-color 0.3s, border-color 0.3s; /* Smooth transitions for dark mode */
         }
 
         body {
@@ -41,7 +71,7 @@
         }
         
         /* ======================================= */
-        /* --- 1. CLASSIC TWO-TIER HEADER (REPLACED) --- */
+        /* --- NAVBAR STYLES --- */
         /* ======================================= */
         header.site-header { 
             background-color: var(--card-bg); 
@@ -69,14 +99,15 @@
             gap: 25px; 
         }
         
-        /* Search Bar Style */
+        /* Search Bar */
         .search-bar { position: relative; }
         .search-bar input { 
             padding: 8px 40px 8px 15px; 
             border: 1px solid #ddd; 
             border-radius: 20px; 
             width: 300px; 
-            transition: border-color 0.3s; 
+            background-color: var(--secondary-bg);
+  transition: border-color 0.3s; 
         }
         .search-bar input:focus { 
             border-color: var(--accent-highlight); 
@@ -87,14 +118,26 @@
             right: 15px; 
             top: 50%; 
             transform: translateY(-50%); 
-            color: var(--text-muted); 
+            color: var(--text-muted);             color: var(--text-dark);
         }
         
+        /* Utility Icons */
+        .utility-icon { 
+            position: relative; 
+            display: flex;
+            align-items: center;
+        }
         .utility-icon i { 
             font-size: 1.3rem; 
             color: var(--primary-color); 
             cursor: pointer; 
+            transition: color 0.2s;
         }
+        .utility-icon i:hover {
+            color: var(--accent-highlight);
+        }
+        
+        /* Cart & Wishlist Count */
         .cart-count { 
             background-color: var(--accent-highlight); 
             color: var(--primary-color); 
@@ -107,7 +150,24 @@
             font-weight: 700; 
         }
         
-        /* Nav Bar Style */
+        /* Dark Mode Toggle Switch */
+        .dark-mode-toggle { display: flex; align-items: center; cursor: pointer; gap: 5px; }
+        .dark-mode-toggle i { color: var(--primary-color); font-size: 1.3rem; }
+        .dark-mode-toggle i.fa-moon { display: none; }
+        
+        /* Language Selector */
+        .language-selector {
+            border: 1px solid var(--text-muted);
+            border-radius: 6px;
+            padding: 5px 10px;
+            font-weight: 600;
+            color: var(--primary-color);
+            cursor: pointer;
+            user-select: none;
+            font-size: 0.9rem;
+        }
+        
+        /* Nav Bar */
         .header-nav-bar { background-color: var(--primary-color); }
         .main-nav { display: flex; }
         .main-nav a { 
@@ -124,9 +184,7 @@
             border-bottom-color: var(--accent-highlight); 
         }
 
-
-        /* ======================================= */
-        /* --- 2. MEGA-MENU STYLES (Kept for function, but hidden by default now) --- */
+    /* --- 2. MEGA-MENU STYLES (Kept for function, but hidden by default now) --- */
         /* ======================================= */
         .mega-menu-overlay {
             display: none; 
@@ -246,14 +304,31 @@
         <div class="container">
             <div class="header-top">
                 <a href="#" class="logo">TELESEEN</a>
+                
                 <div class="search-bar">
                     <input type="text" placeholder="Search products, brands...">
                     <i class="fas fa-search"></i>
                 </div>
+                
                 <div class="header-utility">
+                    
+                    <div class="dark-mode-toggle" id="darkModeToggle">
+                        <i class="fas fa-sun"></i> 
+                        <i class="fas fa-moon"></i>
+                    </div>
+
+                    <div class="language-selector" id="languageSelector" onclick="switchLanguage()">
+                        English
+                    </div>
+                    
                     <div class="utility-icon" title="My Account">
                         <i class="fas fa-user-circle"></i>
                     </div>
+
+                    <div class="utility-icon" title="Wishlist" style="position: relative;">
+                        <i class="fas fa-heart"></i>
+                        <span class="cart-count" style="background-color: #3498DB;">2</span> </div>
+                    
                     <div class="utility-icon" title="Shopping Cart" style="position: relative;">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count">3</span>
@@ -261,6 +336,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="header-nav-bar">
             <div class="container">
                 <nav class="main-nav">
@@ -288,11 +364,11 @@
                 <li><a href="#"><i class="fas fa-kitchen-set"></i> Kitchen Appliances <i class="fas fa-chevron-right"></i></a></li>
                 <li><a href="#"><i class="fas fa-dumbbell"></i> Sports & Fitness <i class="fas fa-chevron-right"></i></a></li>
                 <li><a href="#"><i class="fas fa-car"></i> Automotive <i class="fas fa-chevron-right"></i></a></li>
-                </ul>
+            </ul>
         </div>
     </div>
 
-    <div class="hero-carousel-container">
+ <div class="hero-carousel-container">
         <div class="container">
             <div class="hero-slide active" data-slide="0">
                 <div class="slide-text">
@@ -354,6 +430,7 @@
             </div>
         </div>
     </div>
+
 
     <div class="container">
         <h2 class="section-title">Customers Are Buying: Quick Picks</h2>
@@ -446,7 +523,6 @@
                     </div>
                 </div>
             </div>
-            
             <div class="footer-bottom">
                 &copy; 2025 Teleseen E-commerce. All rights reserved. | Developed using Elite UI.
             </div>
@@ -465,6 +541,39 @@
             document.body.style.overflow = megaMenuOverlay.classList.contains('open') ? 'hidden' : '';
         }
 
+        // --- Dark Mode Toggle ---
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        function toggleDarkMode() {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                body.classList.add('dark-mode');
+            }
+        });
+
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+
+        // --- Language Selector ---
+        const langSelector = document.getElementById('languageSelector');
+        
+        function switchLanguage() {
+            if (langSelector.textContent.trim() === 'English') {
+                langSelector.textContent = 'සිංහල';
+            } else {
+                langSelector.textContent = 'English';
+            }
+        }
+
+
         // --- Hero Carousel Logic ---
         let slideIndex = 0;
         const slides = document.querySelectorAll('.hero-slide');
@@ -472,36 +581,29 @@
         const totalSlides = slides.length;
 
         function showSlide(n) {
-            // Hide all slides and remove active class from dots
             slides.forEach(slide => slide.classList.remove('active'));
             dots.forEach(dot => dot.classList.remove('active'));
             
-            // Calculate the new index (wrap around)
             slideIndex = (n + totalSlides) % totalSlides;
             
-            // Show the new slide and activate the corresponding dot
             slides[slideIndex].classList.add('active');
             dots[slideIndex].classList.add('active');
         }
 
-        // Auto-advance feature
         function autoAdvance() {
             showSlide(slideIndex + 1);
         }
 
-        // Add click handlers for dots
         dots.forEach(dot => {
             dot.addEventListener('click', function() {
-                clearInterval(carouselInterval); // Stop auto-advance temporarily
+                clearInterval(carouselInterval);
                 showSlide(parseInt(this.getAttribute('data-slide')));
-                carouselInterval = setInterval(autoAdvance, 5000); // Restart interval
+                carouselInterval = setInterval(autoAdvance, 5000);
             });
         });
 
-        // Start the carousel auto-advance every 5 seconds
         let carouselInterval = setInterval(autoAdvance, 5000); 
 
-        // Initial setup
         document.addEventListener('DOMContentLoaded', () => {
             showSlide(0);
         });
