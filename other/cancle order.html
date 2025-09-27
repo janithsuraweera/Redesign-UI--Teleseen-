@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Component - Teleseen Advanced UI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Consistent Theme Colors */
+            --primary-color: #2C3E50; /* Elegant Graphite */
+            --accent-highlight: #F39C12; /* Teleseen Gold (CTA) */
+            --danger-color: #E74C3C; /* Cancellation/Alerts */
+            
+            /* General Colors */
+            --secondary-color: #F8F9FB;
+            --card-bg: #fff;
+            --text-dark: #212121;
+            --border-radius: 12px;
+            --shadow-modal: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--secondary-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 50px; /* Padding for main content */
+        }
+        
+        /* --- 1. EXAMPLE MAIN CONTENT (for context) --- */
+        .main-content {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-modal);
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .main-content h1 { color: var(--primary-color); margin-bottom: 20px; }
+
+        /* General Button Style */
+        .open-modal-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            background-color: var(--accent-highlight);
+            color: var(--text-dark);
+            transition: background-color 0.2s, transform 0.2s;
+        }
+        .open-modal-btn:hover { background-color: #e28a00; transform: translateY(-1px); }
+
+        /* ======================================= */
+        /* --- 2. MODAL CORE STYLES (NEW) --- */
+        /* ======================================= */
+        .modal-overlay {
+            /* Hidden by default */
+            display: none; 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Darker overlay */
+            backdrop-filter: blur(5px); /* Elegant blur effect */
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            width: 90%;
+            max-width: 550px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-modal);
+            transform: translateY(-50px); /* Starts above screen */
+            transition: transform 0.3s ease-out;
+            position: relative;
+            padding: 0; /* Remove padding from card, add to sections */
+            overflow: hidden; /* Ensures borders are clean */
+        }
+        
+        .modal-overlay.open .modal-content {
+            transform: translateY(0); /* Slides into view */
+        }
+
+        /* Modal Header (Graphite) */
+        .modal-header {
+            background-color: var(--primary-color);
+            color: var(--card-bg);
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--card-bg);
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .close-btn:hover {
+            opacity: 1;
+        }
+
+        /* Modal Body */
+        .modal-body {
+            padding: 25px;
+        }
+        .modal-body p {
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            font-size: 1rem;
+        }
+
+        /* Example Form Input (Styled to match theme) */
+        .form-group { margin-bottom: 15px; }
+        .form-group label {
+            display: block; font-weight: 600; margin-bottom: 5px; color: var(--primary-color);
+        }
+        .form-group textarea {
+            width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;
+            font-size: 1rem; resize: vertical; min-height: 100px;
+        }
+
+        /* Modal Footer (Actions) */
+        .modal-footer {
+            padding: 15px 25px;
+            border-top: 1px solid #eee;
+            text-align: right;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        /* Action Buttons */
+        .action-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .action-btn.primary-gold {
+            background-color: var(--accent-highlight);
+            color: var(--text-dark);
+        }
+        .action-btn.primary-gold:hover {
+            background-color: #e28a00;
+        }
+
+        .action-btn.secondary-cancel {
+            background-color: #eee;
+            color: var(--primary-color);
+        }
+        .action-btn.secondary-cancel:hover {
+            background-color: #ddd;
+        }
+
+        .action-btn.danger {
+            background-color: var(--danger-color);
+            color: var(--card-bg);
+        }
+        .action-btn.danger:hover {
+            background-color: #c0392b;
+        }
+
+        @media (max-width: 600px) {
+            .modal-content { max-width: 95%; }
+            .modal-footer { flex-direction: column; }
+            .action-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="main-content">
+        <h1>Advanced Modal Component Test</h1>
+        <p>Click the button below to see the elegant, themed modal.</p>
+        <button class="open-modal-btn" onclick="openModal()">
+            <i class="fas fa-magic"></i> Open Advanced Modal
+        </button>
+    </div>
+
+    <div id="advancedModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+                <h3><i class="fas fa-exclamation-triangle" style="color: var(--danger-color); margin-right: 10px;"></i> Confirm Order Cancellation</h3>
+                <button class="close-btn" onclick="closeModal(event, true)">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <p>
+                    You are about to cancel Order ID <strong>#TESLN-0019283</strong> (4K UHD 55" Smart TV). 
+                    This action is final and the items will be returned to stock.
+                </p>
+                
+                <div class="form-group">
+                    <label for="cancellationReason">Please provide a reason for cancellation:</label>
+                    <textarea id="cancellationReason" placeholder="e.g., Found a better price, ordered wrong item, etc."></textarea>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="action-btn secondary-cancel" onclick="closeModal(event, true)">
+                    <i class="fas fa-chevron-left"></i> Keep Order
+                </button>
+                <button class="action-btn danger" onclick="confirmAction()">
+                    <i class="fas fa-ban"></i> Yes, Cancel Order
+                </button>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('advancedModal');
+
+        function openModal() {
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+        }
+
+        function closeModal(event, forceClose = false) {
+            // Check if the click was on the overlay itself or forced by the button
+            if (forceClose || event.target === modal) {
+                modal.classList.remove('open');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+        }
+        
+        function confirmAction() {
+            const reason = document.getElementById('cancellationReason').value;
+            if (reason.trim() === '') {
+                alert('Please provide a reason to confirm cancellation.');
+                return;
+            }
+            alert(`Cancellation Confirmed! Reason: "${reason}"`);
+            closeModal(null, true); // Close after successful action
+        }
+        
+        // Prevent clicking inside the modal content from closing the modal
+        document.querySelector('.modal-content').addEventListener('click', (event) => {
+            event.stopPropagation();
+        });
+    </script>
+</body>
+</html>
