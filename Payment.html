@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Payment - Teleseen Advanced Header</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Consistent Theme Colors */
+            --primary-color: #2C3E50; /* Elegant Graphite */
+            --accent-highlight: #F39C12; /* Teleseen Gold (CTA) */
+            --success-color: #27AE60; /* Emerald Green */
+            --danger-color: #E74C3C; 
+
+            /* General Colors */
+            --secondary-color: #F8F9FB; 
+            --text-dark: #212121;
+            --text-muted: #7f8c8d;
+            --card-bg: #fff;
+            --border-radius: 10px;
+            --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --padding: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--secondary-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* ======================================= */
+        /* --- 1. ADVANCED HEADER STYLES (CONSISTENT) --- */
+        /* ======================================= */
+        header.site-header {
+            background-color: var(--card-bg); 
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-top {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 40px; max-width: 1200px; margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem; font-weight: 900; color: var(--primary-color);
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        
+        .search-bar { flex-grow: 1; max-width: 450px; margin: 0 30px; position: relative; }
+        .search-input { width: 100%; padding: 10px 40px 10px 15px; border: 2px solid #ddd; border-radius: 30px; font-size: 1rem; transition: border-color 0.3s; }
+        .search-input:focus { outline: none; border-color: var(--accent-highlight); }
+        .search-bar i { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+
+        .header-utility { display: flex; align-items: center; gap: 20px; }
+        .utility-icon { position: relative; cursor: pointer; color: var(--primary-color); font-size: 1.4rem; transition: color 0.2s; }
+        .utility-icon:hover { color: var(--accent-highlight); }
+        .cart-count { position: absolute; top: -5px; right: -8px; background: var(--danger-color); color: white; border-radius: 50%; font-size: 0.7rem; padding: 2px 6px; font-weight: 700; }
+        
+        .user-info { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.9rem; font-weight: 600; color: var(--primary-color); }
+        .user-info:hover { color: var(--accent-highlight); }
+        .user-info i { font-size: 1.2rem; }
+
+        .header-nav-bar { background-color: var(--primary-color); }
+        .main-nav { display: flex; max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+        .main-nav a { color: var(--card-bg); text-decoration: none; padding: 12px 20px; font-weight: 600; font-size: 0.95rem; transition: background-color 0.3s; border-bottom: 3px solid transparent; }
+        .main-nav a:hover, .main-nav a.active { background-color: #3b5066; border-bottom-color: var(--accent-highlight); }
+
+        /* ======================================= */
+        /* --- 2. CHECKOUT LAYOUT STYLES --- */
+        /* ======================================= */
+        .checkout-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .checkout-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 2fr 1.2fr; /* Payment takes more space than summary */
+            gap: 30px;
+        }
+
+        /* --- LEFT COLUMN: Payment Methods --- */
+        .payment-section {
+            background: var(--card-bg);
+            padding: var(--padding);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-subtle);
+        }
+        
+        .section-header {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .payment-option {
+            border: 2px solid #eee;
+            border-radius: var(--border-radius);
+            margin-bottom: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .payment-option:hover {
+            border-color: #ccc;
+        }
+        
+        .payment-option.selected {
+            border-color: var(--accent-highlight); /* Gold border for selected */
+            box-shadow: 0 0 5px rgba(243, 156, 18, 0.5);
+            background: #fffdf8;
+        }
+
+        .option-details h4 {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-dark);
+        }
+        .option-details p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .radio-btn {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            margin-right: 10px;
+            position: relative;
+            cursor: pointer;
+        }
+        .payment-option.selected .radio-btn {
+            border-color: var(--accent-highlight);
+        }
+        .payment-option.selected .radio-btn::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--accent-highlight);
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            border-radius: 50%;
+        }
+
+        /* Card Icon Styling */
+        .card-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+        }
+
+        /* --- RIGHT COLUMN: Order Summary --- */
+        .summary-section {
+            background: var(--card-bg);
+            padding: var(--padding);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-subtle);
+            height: fit-content;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        .summary-total {
+            border-top: 2px dashed #eee;
+            padding-top: 15px;
+            margin-top: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--danger-color); /* Highlight Total */
+        }
+        .summary-total span {
+            color: var(--primary-color);
+        }
+
+        /* Final CTA (Consistent GOLD Button) */
+        .pay-now-btn {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+
+            /* Gold CTA */
+            background-color: var(--accent-highlight); 
+            color: var(--text-dark); 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .pay-now-btn:hover {
+            background-color: #e28a00;
+            transform: translateY(-2px);
+        }
+
+        /* New Card Form Area */
+        #newCardForm {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            display: none;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .soft-input {
+            width: 100%; padding: 10px 15px; border: 1px solid #ddd; border-radius: 6px;
+            background: var(--card-bg); color: var(--text-dark); margin-top: 5px;
+        }
+        
+        /* --- 3. Responsive Adjustments --- */
+        @media (max-width: 900px) {
+            .header-top { padding: 15px 20px; }
+            .search-bar { display: none; }
+            .checkout-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .header-top { justify-content: space-around; }
+            .main-nav { display: none; } /* Hide bottom nav on mobile */
+            .user-info span { display: none; } 
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="site-header">
+        <div class="header-top">
+            <div class="logo">TELESEEN</div>
+            
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search for products, brands, and more...">
+                <i class="fas fa-search"></i>
+            </div>
+
+            <div class="header-utility">
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i> 
+                    <span>My Account</span>
+                </div>
+                <div class="utility-icon" title="Shopping Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">3</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="header-nav-bar">
+            <nav class="main-nav">
+                <a href="#">Home</a>
+                <a href="#">Electronics</a>
+                <a href="#">Home & Living</a>
+                <a href="#">Fitness & Health</a>
+                <a href="#">Fashion</a>
+                <a href="#">Deals</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="checkout-container">
+        <h1 class="checkout-title">🔒 Secure Checkout: Payment</h1>
+        
+        <div class="checkout-grid">
+            
+            <div class="payment-section">
+                <div class="section-header">Select a Payment Method</div>
+
+                <div class="payment-option selected" onclick="selectPayment('card1', 'card-details-1')">
+                    <div style="display: flex; align-items: center;">
+                        <input type="radio" name="payment" class="radio-btn" checked>
+                        <i class="fab fa-cc-visa card-icon" style="color:#1652FF;"></i>
+                        <div class="option-details" id="card-details-1">
+                            <h4>Visa **** 4321 (Default)</h4>
+                            <p>Expires 12/26</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-check-circle" style="color:var(--success-color);"></i>
+                </div>
+
+                <div class="payment-option" onclick="selectPayment('card2', 'card-details-2')">
+                    <div style="display: flex; align-items: center;">
+                        <input type="radio" name="payment" class="radio-btn">
+                        <i class="fab fa-cc-mastercard card-icon" style="color:#eb001b;"></i>
+                        <div class="option-details" id="card-details-2">
+                            <h4>Mastercard **** 9876</h4>
+                            <p>Expires 08/24</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment-option" onclick="selectPayment('cod', 'cod-details')">
+                    <div style="display: flex; align-items: center;">
+                        <input type="radio" name="payment" class="radio-btn">
+                        <i class="fas fa-money-bill-wave card-icon" style="color:var(--success-color);"></i>
+                        <div class="option-details" id="cod-details">
+                            <h4>Cash on Delivery (COD)</h4>
+                            <p>Pay upon receiving the order (Available in select areas)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="payment-option" id="newCardOption" onclick="selectPayment('new-card', 'new-card-details')">
+                    <div style="display: flex; align-items: center;">
+                        <input type="radio" name="payment" class="radio-btn">
+                        <i class="fas fa-plus-circle card-icon" style="color:var(--accent-highlight);"></i>
+                        <div class="option-details" id="new-card-details">
+                            <h4>Use a New Credit/Debit Card</h4>
+                            <p>Enter details below, optionally save for future</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="newCardForm">
+                    <div class="form-row">
+                        <input type="text" placeholder="Card Number" class="soft-input" required>
+                        <input type="text" placeholder="Cardholder Name" class="soft-input" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" placeholder="MM / YY" class="soft-input" required>
+                        <input type="text" placeholder="CVV" class="soft-input" required>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <input type="checkbox" id="saveCard">
+                        <label for="saveCard" style="font-size: 0.9rem;">Save this card for future payments</label>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="summary-section">
+                <div class="section-header" style="border-bottom: 1px solid #eee; padding-bottom: 10px;">Order Summary (3 Items)</div>
+                
+                <div class="summary-item" style="margin-top: 15px;">
+                    <span>Subtotal:</span>
+                    <span>Rs. 105,000</span>
+                </div>
+                <div class="summary-item">
+                    <span>Delivery Charge:</span>
+                    <span>Rs. 1,500</span>
+                </div>
+                <div class="summary-item" style="color:var(--danger-color);">
+                    <span>Discounts:</span>
+                    <span>- Rs. 7,500</span>
+                </div>
+
+                <div class="summary-total">
+                    <span>Grand Total:</span>
+                    <span style="font-size: 1.5rem; color:var(--accent-highlight);">Rs. 99,000</span>
+                </div>
+                
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 15px;">
+                    You are paying in LKR (Sri Lankan Rupees). Exchange rates apply for foreign cards.
+                </p>
+
+                <button class="pay-now-btn" onclick="processPayment()">
+                    <i class="fas fa-lock"></i> Pay Now Rs. 99,000
+                </button>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        window.selectPayment = (id, detailsId) => {
+            const options = document.querySelectorAll('.payment-option');
+            options.forEach(option => {
+                option.classList.remove('selected');
+                option.querySelector('.radio-btn').checked = false;
+                // Remove checkmark icon from non-selected items
+                const checkmark = option.querySelector('.fa-check-circle');
+                if (checkmark) checkmark.remove();
+            });
+
+            const selectedOption = document.querySelector(`.payment-option[onclick*="${id}"]`);
+            if (selectedOption) {
+                selectedOption.classList.add('selected');
+                selectedOption.querySelector('.radio-btn').checked = true;
+
+                // Add checkmark icon to the selected item (for visual clarity)
+                const checkmark = document.createElement('i');
+                checkmark.classList.add('fas', 'fa-check-circle');
+                checkmark.style.color = 'var(--success-color)';
+                selectedOption.appendChild(checkmark);
+            }
+            
+            // Toggle New Card Form visibility
+            const newCardForm = document.getElementById('newCardForm');
+            if (id === 'new-card') {
+                newCardForm.style.display = 'block';
+            } else {
+                newCardForm.style.display = 'none';
+            }
+        };
+
+        window.processPayment = () => {
+            const selectedOption = document.querySelector('.payment-option.selected .option-details');
+            if (selectedOption) {
+                const method = selectedOption.querySelector('h4').textContent;
+                
+                if (method.includes("New Credit/Debit Card") && document.getElementById('newCardForm').style.display === 'block') {
+                    // Simple validation for new card details
+                    const inputs = document.querySelectorAll('#newCardForm .soft-input');
+                    let isValid = Array.from(inputs).every(input => input.value.trim() !== '');
+                    
+                    if (!isValid) {
+                        alert('Please fill out all new card details.');
+                        return;
+                    }
+                    
+                    alert(`Processing Rs. 99,000 via New Card.`);
+                } else {
+                    alert(`Processing Rs. 99,000 via ${method.replace(' (Default)', '')}.`);
+                }
+            } else {
+                alert('Please select a payment method.');
+            }
+        };
+
+        // Initialize the page by selecting the default card
+        document.addEventListener('DOMContentLoaded', () => {
+             // Re-select default to ensure checkmark is visible on load
+             selectPayment('card1', 'card-details-1');
+        });
+    </script>
+</body>
+</html>
