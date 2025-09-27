@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Tracking - Teleseen Advanced UI</title>
+    <title>Order Tracking - Teleseen Real-Time UI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 
@@ -12,9 +12,9 @@
             /* Consistent Theme Colors */
             --primary-color: #2C3E50; /* Elegant Graphite */
             --accent-highlight: #F39C12; /* Teleseen Gold (CTA) */
-            --success-color: #27AE60; /* Emerald Green (Completed/Delivered) */
+            --success-color: #27AE60; /* Emerald Green (Delivered) */
             --info-color: #3498DB; /* Bright Blue (In Transit) */
-            --danger-color: #E74C3C; 
+            --warning-color: #E67E22; /* Orange (Processing/Ready) */
 
             /* General Colors */
             --secondary-color: #F8F9FB; /* Light Gray Page Background */
@@ -22,7 +22,7 @@
             --text-dark: #212121;
             --text-muted: #7f8c8d;
             --border-radius: 12px;
-            --shadow-subtle: 0 6px 15px rgba(0, 0, 0, 0.08);
+            --shadow-subtle: 0 8px 20px rgba(0, 0, 0, 0.1);
             --padding: 25px;
         }
 
@@ -41,199 +41,160 @@
         }
         
         /* ======================================= */
-        /* --- 1. ADVANCED HEADER STYLES (CONSISTENT) --- */
+        /* --- 1. HEADER (CONSISTENT) --- */
         /* ======================================= */
-        header.site-header {
-            background-color: var(--card-bg); 
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .header-top {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 40px; max-width: 1200px; margin: 0 auto;
-        }
-        
+        header.site-header { background-color: var(--card-bg); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); }
+        .header-top { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; max-width: 1200px; margin: 0 auto; }
         .logo { font-size: 1.8rem; font-weight: 900; color: var(--primary-color); text-transform: uppercase; letter-spacing: 1px; }
-        
-        .search-bar { flex-grow: 1; max-width: 450px; margin: 0 30px; position: relative; }
-        .search-input { width: 100%; padding: 10px 40px 10px 15px; border: 2px solid #ddd; background: #fff; color: var(--text-dark); border-radius: 30px; font-size: 1rem; transition: border-color 0.3s; }
-        .search-input:focus { outline: none; border-color: var(--accent-highlight); }
-        .search-bar i { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
-
         .header-utility { display: flex; align-items: center; gap: 20px; }
-        .utility-icon { position: relative; cursor: pointer; color: var(--primary-color); font-size: 1.4rem; transition: color 0.2s; }
-        .utility-icon:hover { color: var(--accent-highlight); }
-        .cart-count { background: var(--danger-color); color: white; /* Other cart-count styles unchanged */ }
-        
         .header-nav-bar { background-color: var(--primary-color); }
         .main-nav { display: flex; max-width: 1200px; margin: 0 auto; padding: 0 40px; }
         .main-nav a { color: var(--card-bg); text-decoration: none; padding: 12px 20px; font-weight: 600; font-size: 0.95rem; transition: background-color 0.3s; border-bottom: 3px solid transparent; }
-        .main-nav a.active { background-color: #3b5066; border-bottom-color: var(--accent-highlight); }
+        .main-nav a:hover, .main-nav a.active { background-color: #3b5066; border-bottom-color: var(--accent-highlight); }
 
         /* ======================================= */
-        /* --- 2. TRACKING PAGE LAYOUT & UI --- */
+        /* --- 2. TRACKING LAYOUT & MAIN STATUS --- */
         /* ======================================= */
-        .tracking-container {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 0 20px;
+        .tracking-container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+
+        .tracking-header-section {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 25px;
+        }
+        .page-title { font-size: 2.2rem; font-weight: 900; color: var(--primary-color); }
+        .order-id { font-size: 1rem; color: var(--text-muted); font-weight: 600; }
+        .order-id strong { color: var(--primary-color); }
+
+        /* Real-Time Status Card (Prominent) */
+        .status-card {
+            background-color: var(--card-bg);
+            padding: var(--padding);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-subtle);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-left: 6px solid var(--info-color); /* Highlight color */
         }
 
-        .page-header {
-            display: flex; justify-content: space-between; align-items: flex-end;
-            margin-bottom: 25px; padding-bottom: 10px; border-bottom: 1px solid #ddd;
+        .status-left h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--info-color);
+            margin-bottom: 5px;
         }
-        .page-title {
-            font-size: 2rem; font-weight: 700; color: var(--primary-color);
+        .status-left p {
+            font-size: 1rem;
+            color: var(--text-dark);
         }
-        .order-id {
-            font-size: 1rem; color: var(--text-muted); font-weight: 600;
+        .status-left strong {
+            color: var(--accent-highlight);
+            font-size: 1.1rem;
+        }
+
+        .status-right {
+            text-align: right;
+        }
+        .status-icon {
+            font-size: 3rem;
+            color: var(--info-color);
         }
 
         .tracking-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr; /* Timeline vs. Details */
+            grid-template-columns: 2.5fr 1.5fr; /* Map/Timeline vs. Details */
             gap: 30px;
             align-items: start;
         }
 
-        /* --- LEFT COLUMN: VISUAL TIMELINE --- */
-        .timeline-card {
+        /* --- LEFT COLUMN: MAP & TIMELINE --- */
+        .map-card {
             background: var(--card-bg);
-            padding: var(--padding);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-subtle);
-            border: 1px solid #eee;
+            overflow: hidden;
+            margin-bottom: 20px;
         }
-        
-        .timeline-header {
-            font-size: 1.3rem; font-weight: 700; color: var(--accent-highlight);
-            margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px dashed #eee;
-        }
-
-        .timeline {
-            position: relative;
-            padding-left: 30px; /* Space for the line and dots */
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 9px;
-            width: 3px;
-            height: 100%;
-            background: #ddd;
-        }
-        
-        .timeline-event {
-            position: relative;
-            margin-bottom: 30px;
-            padding-bottom: 10px;
-            transition: opacity 0.3s;
-        }
-
-        .event-dot {
-            position: absolute;
-            left: -21px; /* Position over the line */
-            top: 2px;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: var(--secondary-color);
-            border: 3px solid #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .map-placeholder {
+            height: 250px;
+            background-color: #e0e0e0;
+            display: flex; align-items: center; justify-content: center;
             color: var(--text-muted);
+            font-size: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        .map-update-bar {
+            padding: 10px 20px;
+            background: #f7f7f7;
             font-size: 0.9rem;
-            z-index: 10;
-            transition: all 0.3s;
+            font-weight: 600;
+            color: var(--primary-color);
         }
-
-        /* Completed Status */
-        .timeline-event.completed .event-dot {
-            background: var(--success-color);
-            border-color: var(--success-color);
-            color: white;
-        }
-        .timeline-event.completed .timeline-line { background: var(--success-color); }
-        .timeline-event.completed h4 { color: var(--success-color); }
-
-        /* Active/Current Status */
-        .timeline-event.active .event-dot {
-            background: var(--info-color); /* Bright Blue */
-            border-color: var(--info-color);
-            color: white;
-            animation: pulse 1.5s infinite;
-        }
-        .timeline-event.active h4 { color: var(--info-color); font-weight: 700; }
         
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(52, 152, 219, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0); }
+        .timeline-card {
+            padding: var(--padding);
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-subtle);
         }
 
-        .event-details h4 { font-size: 1.1rem; margin-bottom: 5px; }
+        /* Timeline Styles (Enhanced) */
+        .timeline { position: relative; padding-left: 30px; }
+        .timeline::before { content: ''; position: absolute; top: 0; left: 9px; width: 3px; height: 100%; background: #ddd; }
+        .timeline-event { position: relative; margin-bottom: 30px; }
+        .event-dot {
+            position: absolute; left: -21px; top: 2px; width: 25px; height: 25px; border-radius: 50%;
+            background: var(--secondary-color); border: 3px solid #ddd; display: flex; align-items: center;
+            justify-content: center; color: var(--text-muted); font-size: 0.9rem; z-index: 10; transition: all 0.3s;
+        }
+        .timeline-event.completed .event-dot { background: var(--success-color); border-color: var(--success-color); color: white; }
+        .timeline-event.active .event-dot { background: var(--info-color); border-color: var(--info-color); color: white; animation: pulse 1.5s infinite; }
+        
+        .event-details h4 { font-size: 1.1rem; color: var(--primary-color); margin-bottom: 3px; }
         .event-details p { font-size: 0.9rem; color: var(--text-muted); }
 
-        /* Estimated Delivery Box */
-        .eta-box {
-            padding: 15px; background: #fcf8e3; border: 1px solid #faebcc; 
-            border-radius: 8px; margin-bottom: 20px;
-            display: flex; align-items: center; gap: 15px;
-        }
-        .eta-box i { font-size: 2rem; color: var(--accent-highlight); }
-        .eta-box strong { font-size: 1.1rem; color: var(--primary-color); }
-
-        /* --- RIGHT COLUMN: ORDER DETAILS --- */
+        /* --- RIGHT COLUMN: DETAILS & ITEMS --- */
         .details-card {
             background: var(--card-bg);
             padding: var(--padding);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-subtle);
-            border: 1px solid #eee;
             position: sticky; top: 20px;
+            margin-bottom: 20px;
         }
-        .details-header {
-            font-size: 1.3rem; font-weight: 700; color: var(--primary-color);
-            margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px dashed #eee;
-        }
-        .detail-item {
-            display: flex; justify-content: space-between; margin-bottom: 8px;
-            font-size: 0.95rem;
-        }
-        .detail-item span:first-child { color: var(--text-muted); }
-        .detail-item strong { color: var(--text-dark); }
+        .details-header { font-size: 1.3rem; font-weight: 700; color: var(--primary-color); margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px dashed #eee; }
         
-        .address-box { margin-top: 15px; border-top: 1px solid #eee; padding-top: 15px; }
-        .address-box strong { display: block; margin-bottom: 5px; color: var(--primary-color); }
-        .address-box p { font-size: 0.9rem; color: var(--text-dark); }
-
+        /* Item List */
+        .item-list { border-top: 1px dashed #eee; margin-top: 15px; padding-top: 15px; }
+        .item-list h4 { font-size: 1rem; color: var(--primary-color); margin-bottom: 10px; }
+        .tracking-item {
+            display: flex; gap: 10px; align-items: center; margin-bottom: 15px;
+            padding: 10px; border: 1px solid #f0f0f0; border-radius: 8px;
+        }
+        .item-thumb { width: 50px; height: 50px; object-fit: cover; border-radius: 6px; }
+        .item-info strong { display: block; font-size: 0.95rem; color: var(--text-dark); }
+        .item-info span { font-size: 0.8rem; color: var(--success-color); font-weight: 600; }
+        
         /* Buttons (Consistent Gold CTA) */
         .contact-btn {
-            width: 100%; padding: 10px 15px; border: none; border-radius: 6px;
-            cursor: pointer; font-size: 1rem; font-weight: 600;
-            transition: background-color 0.3s, transform 0.3s;
-            margin-top: 20px;
+            width: 100%; padding: 12px 15px; border: none; border-radius: 6px;
+            cursor: pointer; font-size: 1rem; font-weight: 700;
+            margin-top: 15px;
             background-color: var(--accent-highlight); 
             color: var(--text-dark); 
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s;
         }
-        .contact-btn:hover { background-color: #e28a00; transform: translateY(-1px); }
+        .contact-btn:hover { background-color: #e28a00; transform: translateY(-2px); }
 
-        /* --- 3. Responsive Adjustments --- */
+        /* Responsive Adjustments */
         @media (max-width: 900px) {
-            .search-bar { display: none; }
+            .status-card { flex-direction: column; align-items: flex-start; }
+            .status-right { margin-top: 15px; }
             .tracking-grid { grid-template-columns: 1fr; }
             .details-card { position: relative; top: auto; } 
-        }
-        @media (max-width: 600px) {
-            .page-header { flex-direction: column; align-items: flex-start; }
-            .order-id { margin-top: 5px; }
-            .timeline { padding-left: 20px; }
-            .timeline::before { left: 5px; }
-            .event-dot { left: -15px; width: 20px; height: 20px; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -242,12 +203,6 @@
     <header class="site-header">
         <div class="header-top">
             <div class="logo">TELESEEN</div>
-            
-            <div class="search-bar">
-                <input type="text" class="search-input" placeholder="Search for products, brands, and more...">
-                <i class="fas fa-search"></i>
-            </div>
-
             <div class="header-utility">
                 <div class="user-info">
                     <i class="fas fa-user-circle"></i> 
@@ -259,11 +214,10 @@
                 </div>
             </div>
         </div>
-        
         <div class="header-nav-bar">
             <nav class="main-nav">
                 <a href="#">Home</a>
-                <a href="#">My Orders</a>
+                <a href="#" class="active">My Orders</a>
                 <a href="#">Help Center</a>
             </nav>
         </div>
@@ -271,97 +225,122 @@
 
     <div class="tracking-container">
         
-        <header class="page-header">
-            <h1 class="page-title"><i class="fas fa-box-open" style="color: var(--info-color); margin-right: 10px;"></i> Order Status</h1>
-            <div class="order-id">Order ID: <span style="color:var(--primary-color);">#TESLN-0019283</span></div>
+        <header class="tracking-header-section">
+            <h1 class="page-title">Real-Time Order Tracking</h1>
+            <div class="order-id">Order ID: <strong>#TESLN-0019283</strong></div>
         </header>
         
+        <div class="status-card" style="border-left-color: var(--info-color);">
+            <div class="status-left">
+                <h2>In Transit: Out for Delivery</h2>
+                <p>Expected delivery between 9:00 AM and 1:00 PM on <strong>Thursday, October 3rd</strong>.</p>
+                <strong style="color:var(--info-color);"><i class="fas fa-clock"></i> Just Updated: 5 minutes ago</strong>
+            </div>
+            <div class="status-right">
+                <i class="fas fa-route status-icon" style="color: var(--info-color);"></i>
+            </div>
+        </div>
+
         <div class="tracking-grid">
             
-            <div class="timeline-card">
-                <div class="timeline-header">Tracking Progress</div>
-                
-                <div class="eta-box">
-                    <i class="fas fa-shipping-fast"></i>
-                    <div>
-                        <strong style="color:var(--info-color);">Estimated Delivery: Thursday, October 3rd</strong>
-                        <p style="margin-top: 5px; font-size: 0.9rem; color: var(--text-muted);">Your package is on its way to your local hub.</p>
+            <div>
+                <div class="map-card">
+                    <div class="map-placeholder">
+                        <i class="fas fa-map-marked-alt"></i> Interactive Live Map Placeholder
+                    </div>
+                    <div class="map-update-bar">
+                        <i class="fas fa-location-arrow"></i> **Last Known Location:** Near Katunayake Highway Exit.
                     </div>
                 </div>
 
-                <div class="timeline">
-                    <div class="timeline-event">
-                        <div class="event-dot"><i class="fas fa-home"></i></div>
-                        <div class="event-details">
-                            <h4>Out for Delivery</h4>
-                            <p>Delivery agent is en route to your address.</p>
-                            <p style="font-size: 0.85rem; color: var(--accent-highlight); font-weight: 600;">Expected before 5:00 PM</p>
+                <div class="timeline-card">
+                    <div class="details-header">Detailed History</div>
+                    <div class="timeline">
+                        <div class="timeline-event active">
+                            <div class="event-dot"><i class="fas fa-route"></i></div>
+                            <div class="event-details">
+                                <h4>Out for Delivery</h4>
+                                <p>Package loaded onto delivery vehicle for final destination.</p>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">Sep 28, 2025 | 08:30 AM | Delivery Hub: Colombo 03</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="timeline-event active">
-                        <div class="event-dot"><i class="fas fa-route"></i></div>
-                        <div class="event-details">
-                            <h4>In Transit - En Route to Colombo Hub</h4>
-                            <p>The package has departed the regional distribution center.</p>
-                            <p style="font-size: 0.85rem; color: var(--text-dark); font-weight: 600;">Location: Matara Sorting Facility</p>
-                            <p style="font-size: 0.8rem; color: var(--text-muted);">Time: Sep 28, 2025 | 03:00 AM</p>
+                        
+                        <div class="timeline-event completed">
+                            <div class="event-dot"><i class="fas fa-warehouse"></i></div>
+                            <div class="event-details">
+                                <h4>Arrived at Local Hub</h4>
+                                <p>Package processed at the final delivery facility.</p>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">Sep 28, 2025 | 03:00 AM | Location: Colombo Regional Facility</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="timeline-event completed">
-                        <div class="event-dot"><i class="fas fa-warehouse"></i></div>
-                        <div class="event-details">
-                            <h4>Package Scanned and Processed</h4>
-                            <p>Your order has been collected by the courier partner.</p>
-                            <p style="font-size: 0.8rem; color: var(--text-muted);">Time: Sep 27, 2025 | 11:30 PM</p>
+                        <div class="timeline-event completed">
+                            <div class="event-dot"><i class="fas fa-truck-loading"></i></div>
+                            <div class="event-details">
+                                <h4>Departed from Origin Hub</h4>
+                                <p>The order has been dispatched from our primary warehouse.</p>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">Sep 27, 2025 | 11:30 PM</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-event completed">
+                            <div class="event-dot"><i class="fas fa-clipboard-check"></i></div>
+                            <div class="event-details">
+                                <h4>Order Confirmed</h4>
+                                <p>Order successfully placed and payment processed.</p>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">Sep 27, 2025 | 09:00 PM</p>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="timeline-event completed">
-                        <div class="event-dot"><i class="fas fa-clipboard-check"></i></div>
-                        <div class="event-details">
-                            <h4>Order Confirmed and Paid</h4>
-                            <p>Payment successfully received and order details confirmed.</p>
-                            <p style="font-size: 0.8rem; color: var(--text-muted);">Time: Sep 27, 2025 | 09:00 PM</p>
-                        </div>
-                    </div>
-
                 </div>
             </div>
             
-            <div class="details-card">
-                <div class="details-header">Order Summary</div>
-                
-                <div class="detail-item">
-                    <span>Tracking Number:</span>
-                    <strong>TE19283SLK</strong>
+            <div>
+                <div class="details-card">
+                    <div class="details-header">Shipping & Payment</div>
+                    <div class="detail-item">
+                        <span>Shipping To:</span>
+                        <strong>Colombo 03</strong>
+                    </div>
+                    <div class="detail-item">
+                        <span>Delivery Service:</span>
+                        <strong>Express Standard</strong>
+                    </div>
+                    <div class="detail-item">
+                        <span>Total Paid:</span>
+                        <strong style="color:var(--primary-color);">Rs. 99,000</strong>
+                    </div>
+                    <div class="detail-item">
+                        <span>Tracking ID:</span>
+                        <strong>TE19283SLK</strong>
+                    </div>
+
+                    <div class="item-list">
+                        <h4>Items in this Shipment (3)</h4>
+                        
+                        <div class="tracking-item">
+                            <img src="placeholder-image-1.jpg" alt="Item 1" class="item-thumb" style="background-color: #f7f7f7;">
+                            <div class="item-info">
+                                <strong>4K UHD 55" Smart TV (x1)</strong>
+                                <span style="color:var(--info-color);">CURRENTLY IN TRANSIT</span>
+                            </div>
+                        </div>
+
+                        <div class="tracking-item">
+                            <img src="placeholder-image-2.jpg" alt="Item 2" class="item-thumb" style="background-color: #f7f7f7;">
+                            <div class="item-info">
+                                <strong>Soundbar Pro X (x2)</strong>
+                                <span style="color:var(--info-color);">CURRENTLY IN TRANSIT</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="detail-item">
-                    <span>Delivery Service:</span>
-                    <strong>Standard (3-5 Days)</strong>
-                </div>
-                <div class="detail-item">
-                    <span>Payment Status:</span>
-                    <strong style="color:var(--success-color);">Paid (Visa **** 4321)</strong>
-                </div>
-                <div class="detail-item">
-                    <span>Total Paid:</span>
-                    <strong style="color:var(--primary-color);">Rs. 99,000</strong>
-                </div>
-                
-                <div class="address-box">
-                    <strong>Shipping Address</strong>
-                    <p>John Doe</p>
-                    <p>25/A, Galle Road, Colombo 03, Sri Lanka</p>
-                    <p>Contact: +94 77 XXXXXXX</p>
-                </div>
-                
+
                 <button class="contact-btn">
-                    <i class="fas fa-headset"></i> Contact Support
+                    <i class="fas fa-map-marker-alt"></i> Change Delivery Instructions
                 </button>
-                <button class="contact-btn" style="background: #eee; color: var(--primary-color); margin-top: 10px;">
-                    <i class="fas fa-eye"></i> View Order Details
+                <button class="contact-btn" style="background: #eee; color: var(--primary-color);">
+                    <i class="fas fa-headset"></i> Contact Delivery Agent
                 </button>
             </div>
             
